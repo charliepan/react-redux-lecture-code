@@ -11,6 +11,7 @@ const initialState = {
 
 const ADD_AVENGER = 'ADD_AVENGER';
 
+// Action or action creator
 export function addAvenger(avengerObj){
     return {
         type: ADD_AVENGER,
@@ -21,6 +22,12 @@ export function addAvenger(avengerObj){
 export default function reducer(state = initialState, action){
     const {type, payload} = action;
     switch(type){
+        case ADD_AVENGER:
+            let newAvengers = [...state.avengers];
+            newAvengers.push(payload);
+            // Javascript will replace the last avangers property
+            // Copy first then overwrite
+            return {...state, avengers: newAvengers};
         default:
             return state;
     }
